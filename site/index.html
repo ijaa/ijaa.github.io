@@ -12,16 +12,22 @@
     />
     <title>ijaa lab</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
 
       :root {
         color-scheme: light;
-        --bg: #f3f0e8;
-        --ink: #15212b;
-        --muted: #5b6770;
-        --line: rgba(21, 33, 43, 0.14);
-        --warm: #d97a3f;
-        --cool: #34596f;
+        --bg: #ffffff;
+        --fg: #111827;
+        --primary: #3b82f6;
+        --primary-strong: #2563eb;
+        --secondary: #10b981;
+        --accent: #f59e0b;
+        --muted: #f3f4f6;
+        --muted-strong: #e5e7eb;
+        --dark: #111827;
+        --white: #ffffff;
+        --radius-md: 6px;
+        --radius-lg: 8px;
       }
 
       * {
@@ -35,12 +41,12 @@
       body {
         margin: 0;
         min-width: 320px;
-        font-family: 'IBM Plex Sans', sans-serif;
-        color: var(--ink);
-        background:
-          radial-gradient(circle at top left, rgba(217, 122, 63, 0.15), transparent 24%),
-          radial-gradient(circle at bottom right, rgba(52, 89, 111, 0.14), transparent 28%),
-          var(--bg);
+        background: var(--bg);
+        color: var(--fg);
+        font-family: 'Outfit', sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       a {
@@ -48,194 +54,468 @@
         text-decoration: none;
       }
 
-      .shell {
-        max-width: 1180px;
+      .site-shell {
+        width: min(calc(100% - 2rem), 80rem);
         margin: 0 auto;
-        padding: 32px 24px 56px;
       }
 
-      .masthead {
+      .hero-stage {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .site-nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 48px;
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: var(--radius-md);
+        background: var(--fg);
+        color: var(--white);
+        font-weight: 800;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.75rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--radius-md);
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: transform 200ms ease, background-color 200ms ease;
+      }
+
+      .nav-link:hover {
+        transform: scale(1.04);
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .hero-screen {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: clamp(2.5rem, 6vh, 5rem) 0;
+      }
+
+      .hero-grid,
+      .card-grid,
+      .metric-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .hero-grid {
+        align-items: stretch;
+        gap: clamp(1rem, 2.5vw, 2rem);
       }
 
       .eyebrow {
-        margin: 0;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.35em;
-        color: var(--muted);
-      }
-
-      h1 {
-        margin: 16px 0 0;
-        font-family: 'Instrument Serif', serif;
-        font-size: clamp(3.5rem, 8vw, 6.4rem);
-        line-height: 0.95;
-        font-weight: 400;
-      }
-
-      .intro {
-        max-width: 760px;
-        font-size: 1.1rem;
-        line-height: 1.9;
-        color: var(--muted);
-      }
-
-      .grid {
-        display: grid;
-        gap: 18px;
-        margin-top: 40px;
-      }
-
-      .card {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 30px;
-        padding: 28px;
-        background: rgba(255, 255, 255, 0.62);
-        backdrop-filter: blur(10px);
-      }
-
-      .card::after {
-        content: '';
-        position: absolute;
-        inset: auto 0 0;
-        height: 5px;
-      }
-
-      .card-warm::after {
-        background: linear-gradient(90deg, rgba(217, 122, 63, 0.8), transparent);
-      }
-
-      .card-cool::after {
-        background: linear-gradient(90deg, rgba(52, 89, 111, 0.9), transparent);
-      }
-
-      .label {
-        margin: 0;
-        font-size: 12px;
-        text-transform: uppercase;
+        margin: 0 0 1rem;
+        font-size: 0.78rem;
+        font-weight: 600;
         letter-spacing: 0.28em;
-        color: var(--muted);
+        text-transform: uppercase;
       }
 
-      h2 {
-        margin: 14px 0 12px;
-        font-family: 'Instrument Serif', serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        line-height: 1;
-        font-weight: 400;
-      }
-
-      .desc {
+      .display,
+      .headline,
+      .subhead {
         margin: 0;
-        max-width: 56ch;
-        line-height: 1.8;
-        color: var(--muted);
+        letter-spacing: -0.02em;
+        font-weight: 800;
+      }
+
+      .display {
+        font-size: clamp(2.8rem, 6vw + 0.5rem, 5.8rem);
+        line-height: 0.94;
+      }
+
+      .headline {
+        font-size: clamp(2rem, 4vw + 0.5rem, 4rem);
+        line-height: 0.96;
+      }
+
+      .subhead {
+        font-size: clamp(1.5rem, 3vw, 2.1rem);
+        line-height: 1;
+      }
+
+      .lead {
+        margin: 0;
+        max-width: 42rem;
+        font-size: 1.08rem;
+        line-height: 1.65;
+      }
+
+      .body-copy {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .muted-copy {
+        color: rgba(255, 255, 255, 0.84);
+      }
+
+      .muted-copy.dark {
+        color: rgba(17, 24, 39, 0.72);
+      }
+
+      .stack-md > * + * {
+        margin-top: 1rem;
+      }
+
+      .stack-xl > * + * {
+        margin-top: 2rem;
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 24px;
+        gap: 0.9rem;
       }
 
-      .action {
+      .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-width: 150px;
-        padding: 12px 18px;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        background: white;
-        font-size: 14px;
+        min-height: 3.5rem;
+        padding: 0 1.25rem;
+        border-radius: var(--radius-md);
+        font-size: 0.96rem;
         font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        transition: transform 200ms ease, background-color 200ms ease, color 200ms ease;
       }
 
-      .action.primary {
-        color: white;
-        background: var(--ink);
+      .btn:hover {
+        transform: scale(1.05);
       }
 
-      .meta {
-        display: grid;
-        gap: 14px;
-        margin-top: 40px;
+      .btn-secondary {
+        background: var(--muted);
+        color: var(--fg);
       }
 
-      .meta-row {
+      .btn-secondary:hover {
+        background: var(--muted-strong);
+      }
+
+      .btn-outline {
+        border: 4px solid currentColor;
+      }
+
+      .btn-outline:hover {
+        background: currentColor;
+        color: var(--white);
+      }
+
+      .poster-art {
+        position: relative;
+        min-height: clamp(20rem, 44svh, 30rem);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .shape {
+        position: absolute;
+      }
+
+      .shape-circle {
+        border-radius: 999px;
+      }
+
+      .shape-square {
+        border-radius: var(--radius-md);
+      }
+
+      .shape-diamond {
+        border-radius: var(--radius-md);
+        transform: rotate(45deg);
+      }
+
+      .card {
         display: flex;
-        justify-content: space-between;
-        gap: 24px;
-        padding-top: 14px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 14px;
+        flex-direction: column;
+        gap: 1rem;
+        min-height: 100%;
+        padding: 1.5rem;
+        border-radius: var(--radius-lg);
+        background: var(--white);
+        color: var(--fg);
+        transition: transform 200ms ease, background-color 200ms ease;
       }
 
-      @media (min-width: 840px) {
-        .grid {
+      .card:hover {
+        transform: scale(1.02);
+      }
+
+      .card-primary {
+        background: color-mix(in srgb, var(--primary) 12%, white);
+      }
+
+      .card-secondary {
+        background: color-mix(in srgb, var(--secondary) 14%, white);
+      }
+
+      .card-accent {
+        background: color-mix(in srgb, var(--accent) 18%, white);
+      }
+
+      .kicker {
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .stat-number {
+        font-size: clamp(1.8rem, 3vw + 0.4rem, 3rem);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        font-weight: 800;
+      }
+
+      .tone-primary {
+        color: var(--primary);
+      }
+
+      .tone-secondary {
+        color: var(--secondary);
+      }
+
+      .tone-accent {
+        color: var(--accent);
+      }
+
+      .section {
+        padding: clamp(3rem, 6vh, 5rem) 0;
+      }
+
+      .section-muted {
+        background: var(--muted);
+      }
+
+      .section-dark {
+        background: var(--dark);
+        color: var(--white);
+      }
+
+      .card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: fit-content;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .card-link:hover {
+        transform: scale(1.04);
+      }
+
+      @media (min-width: 720px) {
+        .hero-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .card-grid,
+        .metric-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .site-shell {
+          width: min(calc(100% - 3rem), 80rem);
+        }
+
+        .card-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .metric-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
       }
     </style>
   </head>
   <body>
-    <main class="shell">
-      <header class="masthead">
-        <div>
-          <p class="eyebrow">ijaa lab / pages hub</p>
-          <h1>两个独立产品，一个统一入口。</h1>
+    <section class="hero-stage">
+      <div class="site-shell">
+        <header class="site-nav">
+          <a class="brand" href="#top">
+            <span class="brand-mark">IJ</span>
+            <span>ijaa lab</span>
+          </a>
+          <nav class="nav-links" aria-label="Primary">
+            <a class="nav-link" href="#products">Products</a>
+            <a class="nav-link" href="#system">System</a>
+            <a class="nav-link" href="/flat-preview/">Preview</a>
+          </nav>
+        </header>
+      </div>
+
+      <div class="site-shell hero-screen" id="top">
+        <div class="hero-grid">
+          <div class="stack-xl">
+            <div class="stack-md">
+              <p class="eyebrow">ijaa hub / flat design</p>
+              <h1 class="display">三个站点，统一一套更像数字海报的 landing 语言。</h1>
+              <p class="lead muted-copy">
+                `ijaa.github.io` 作为总入口，承接 Baby Future 与 Image Story。
+                这次正式版统一切到 Flat Design：零阴影、强色块、几何背景、靠字重和版式建立层级。
+              </p>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-secondary" href="/baby-future/">Open Baby Future</a>
+              <a class="btn btn-outline" href="/image-story/">Open Image Story</a>
+            </div>
+          </div>
+
+          <div class="poster-art" aria-hidden="true">
+            <div class="shape shape-circle" style="width: 12rem; height: 12rem; right: 2rem; top: 2rem; background: rgba(255, 255, 255, 0.22);"></div>
+            <div class="shape shape-square" style="width: 10rem; height: 10rem; left: 2rem; top: 4rem; background: rgba(255, 255, 255, 0.14);"></div>
+            <div class="shape shape-diamond" style="width: 7rem; height: 7rem; right: 8rem; bottom: 5.5rem; background: rgba(245, 158, 11, 0.92);"></div>
+            <div class="shape shape-square" style="width: 9rem; height: 9rem; left: 6rem; bottom: 2rem; background: rgba(16, 185, 129, 0.88);"></div>
+            <div class="shape" style="left: 1.5rem; right: 1.5rem; bottom: 1.5rem; display: grid; gap: 0.75rem; grid-template-columns: repeat(3, minmax(0, 1fr));">
+              <div class="card">
+                <span class="kicker">Visual Rule</span>
+                <span class="stat-number tone-primary">0</span>
+                <span class="body-copy muted-copy dark">Shadows</span>
+              </div>
+              <div class="card">
+                <span class="kicker">Landing Set</span>
+                <span class="stat-number tone-secondary">3</span>
+                <span class="body-copy muted-copy dark">Unified Pages</span>
+              </div>
+              <div class="card">
+                <span class="kicker">Feedback</span>
+                <span class="stat-number tone-accent">200ms</span>
+                <span class="body-copy muted-copy dark">Direct Motion</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </header>
+      </div>
+    </section>
 
-      <p class="intro">
-        这里是 `ijaa.github.io` 的总入口。按照推荐的 GitHub Pages 聚合方案，
-        `baby-future` 与 `image-story` 保持独立源码仓库，
-        最终发布时统一合并到同一站点下的两个子路径。
-      </p>
-
-      <section class="grid">
-        <article class="card card-warm">
-          <p class="label">product / 01</p>
-          <h2>Baby Future</h2>
-          <p class="desc">
-            从四维超声照出发，生成一份更有纪念价值、更适合分享的未来宝宝形象介绍页。
-          </p>
-          <div class="actions">
-            <a class="action primary" href="/baby-future/">Open Landing</a>
-            <a class="action" href="https://github.com/ijaa/baby-future">Source Repo</a>
+    <main>
+      <section class="section" id="products">
+        <div class="site-shell">
+          <div class="stack-md" style="margin-bottom: 2rem;">
+            <p class="eyebrow" style="color: var(--fg);">Products</p>
+            <h2 class="headline">两个产品入口，各自独立，但共享同一套视觉骨架。</h2>
+            <p class="lead" style="color: rgba(17, 24, 39, 0.72);">
+              主站负责关系说明和产品分发，两个子站则用不同内容组织方式表达不同产品语义。
+            </p>
           </div>
-        </article>
 
-        <article class="card card-cool">
-          <p class="label">product / 02</p>
-          <h2>Image Story</h2>
-          <p class="desc">
-            让单张图片开始叙事，把角色、场景和章节组织成可阅读、可继续生成的绘本体验。
-          </p>
-          <div class="actions">
-            <a class="action primary" href="/image-story/">Open Landing</a>
-            <a class="action" href="https://github.com/ijaa/image-story">Source Repo</a>
+          <div class="card-grid">
+            <article class="card card-primary">
+              <p class="kicker">product / 01</p>
+              <h3 class="subhead">Baby Future</h3>
+              <p class="body-copy muted-copy dark">
+                从四维超声照出发，生成一页更有纪念价值、更适合家庭传播的未来宝宝介绍页。
+              </p>
+              <a class="card-link" href="/baby-future/">Open Landing</a>
+            </article>
+
+            <article class="card card-secondary">
+              <p class="kicker">product / 02</p>
+              <h3 class="subhead">Image Story</h3>
+              <p class="body-copy muted-copy dark">
+                让单张图片开始叙事，把角色、场景和章节组织成可继续生成的故事绘本体验。
+              </p>
+              <a class="card-link" href="/image-story/">Open Landing</a>
+            </article>
+
+            <article class="card card-accent">
+              <p class="kicker">delivery</p>
+              <h3 class="subhead">GitHub Pages 聚合发布</h3>
+              <p class="body-copy muted-copy dark">
+                根站负责分发，两个子站保持独立源码仓库，构建后统一挂在 `/baby-future` 与 `/image-story`。
+              </p>
+              <span class="card-link">Stable Paths</span>
+            </article>
+
+            <article class="card">
+              <p class="kicker">system</p>
+              <h3 class="subhead">Shared Flat Tokens</h3>
+              <p class="body-copy muted-copy dark">
+                `Outfit`、6/8px 圆角、白/灰/蓝/绿/橙五色体系、无阴影按钮与卡片、靠版式建立层级。
+              </p>
+              <a class="card-link" href="/flat-preview/">Preview Archive</a>
+            </article>
           </div>
-        </article>
+        </div>
       </section>
 
-      <section class="meta">
-        <div class="meta-row">
-          <span>发布策略</span>
-          <span>一个 Pages 发布仓库 + 两个私有产品仓库</span>
+      <section class="section section-muted" id="system">
+        <div class="site-shell">
+          <div class="stack-md" style="margin-bottom: 2rem;">
+            <p class="eyebrow" style="color: var(--fg);">What Changed</p>
+            <h2 class="headline">不是更简洁，而是更明确。</h2>
+          </div>
+
+          <div class="metric-grid">
+            <article class="card">
+              <p class="kicker">Typography</p>
+              <p class="stat-number tone-primary">Bold</p>
+              <p class="body-copy muted-copy dark">标题字重和比例更激进，层级不靠卡片阴影，而靠尺寸、位置和颜色对比。</p>
+            </article>
+            <article class="card">
+              <p class="kicker">Color Blocking</p>
+              <p class="stat-number tone-secondary">Sharp</p>
+              <p class="body-copy muted-copy dark">分区之间直接切色，不做柔和过渡，页面更像海报拼接而不是漂浮面板集合。</p>
+            </article>
+            <article class="card">
+              <p class="kicker">Feedback</p>
+              <p class="stat-number tone-accent">Fast</p>
+              <p class="body-copy muted-copy dark">按钮、卡片、入口链接都用即时缩放和颜色切换给反馈，保持数字产品的干脆感。</p>
+            </article>
+          </div>
         </div>
-        <div class="meta-row">
-          <span>目标结构</span>
-          <span>`/`、`/baby-future`、`/image-story`</span>
+      </section>
+
+      <section class="section section-dark">
+        <div class="site-shell">
+          <div class="stack-md">
+            <p class="eyebrow">Routing</p>
+            <h2 class="headline">现在这不是测试页，而是正式 landing 体系。</h2>
+            <p class="lead muted-copy">
+              预览页仍然保留用于对比，但主站与两个子站正式入口已经切换到这套 Flat Design 语言。
+            </p>
+          </div>
         </div>
       </section>
     </main>
