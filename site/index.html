@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta
+      name="description"
+      content="ijaa.github.io 聚合展示 Baby Future 与 Image Story 两个独立产品入口。"
+    />
+    <title>ijaa lab</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+      :root {
+        color-scheme: light;
+        --bg: #f3f0e8;
+        --ink: #15212b;
+        --muted: #5b6770;
+        --line: rgba(21, 33, 43, 0.14);
+        --warm: #d97a3f;
+        --cool: #34596f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(217, 122, 63, 0.15), transparent 24%),
+          radial-gradient(circle at bottom right, rgba(52, 89, 111, 0.14), transparent 28%),
+          var(--bg);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 32px 24px 56px;
+      }
+
+      .masthead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+        color: var(--muted);
+      }
+
+      h1 {
+        margin: 16px 0 0;
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(3.5rem, 8vw, 6.4rem);
+        line-height: 0.95;
+        font-weight: 400;
+      }
+
+      .intro {
+        max-width: 760px;
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+        margin-top: 40px;
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 30px;
+        padding: 28px;
+        background: rgba(255, 255, 255, 0.62);
+        backdrop-filter: blur(10px);
+      }
+
+      .card::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 0;
+        height: 5px;
+      }
+
+      .card-warm::after {
+        background: linear-gradient(90deg, rgba(217, 122, 63, 0.8), transparent);
+      }
+
+      .card-cool::after {
+        background: linear-gradient(90deg, rgba(52, 89, 111, 0.9), transparent);
+      }
+
+      .label {
+        margin: 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        color: var(--muted);
+      }
+
+      h2 {
+        margin: 14px 0 12px;
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1;
+        font-weight: 400;
+      }
+
+      .desc {
+        margin: 0;
+        max-width: 56ch;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: white;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .action.primary {
+        color: white;
+        background: var(--ink);
+      }
+
+      .meta {
+        display: grid;
+        gap: 14px;
+        margin-top: 40px;
+      }
+
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (min-width: 840px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">ijaa lab / pages hub</p>
+          <h1>两个独立产品，一个统一入口。</h1>
+        </div>
+      </header>
+
+      <p class="intro">
+        这里是 `ijaa.github.io` 的总入口。按照推荐的 GitHub Pages 聚合方案，
+        `baby-future` 与 `image-story` 保持独立源码仓库，
+        最终发布时统一合并到同一站点下的两个子路径。
+      </p>
+
+      <section class="grid">
+        <article class="card card-warm">
+          <p class="label">product / 01</p>
+          <h2>Baby Future</h2>
+          <p class="desc">
+            从四维超声照出发，生成一份更有纪念价值、更适合分享的未来宝宝形象介绍页。
+          </p>
+          <div class="actions">
+            <a class="action primary" href="/baby-future/">Open Landing</a>
+            <a class="action" href="https://github.com/ijaa/baby-future">Source Repo</a>
+          </div>
+        </article>
+
+        <article class="card card-cool">
+          <p class="label">product / 02</p>
+          <h2>Image Story</h2>
+          <p class="desc">
+            让单张图片开始叙事，把角色、场景和章节组织成可阅读、可继续生成的绘本体验。
+          </p>
+          <div class="actions">
+            <a class="action primary" href="/image-story/">Open Landing</a>
+            <a class="action" href="https://github.com/ijaa/image-story">Source Repo</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="meta">
+        <div class="meta-row">
+          <span>发布策略</span>
+          <span>一个 Pages 发布仓库 + 两个私有产品仓库</span>
+        </div>
+        <div class="meta-row">
+          <span>目标结构</span>
+          <span>`/`、`/baby-future`、`/image-story`</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
