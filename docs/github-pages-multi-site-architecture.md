@@ -8,6 +8,10 @@
 - `ijaa/baby-future`
 - `ijaa/image-story`
 
+相关设计文档：
+
+- [ijaa.github.io Flat Design Landing 设计方案](/Users/liukai/Documents/workspace/other/kkstudios/ijaa.github.io/docs/flat-design-landing-system.md)
+
 ## 1. 系统目标
 
 目标不是把多个项目直接塞进一个大仓库，而是：
