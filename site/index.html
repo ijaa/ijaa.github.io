@@ -8,26 +8,39 @@
     />
     <meta
       name="description"
-      content="ijaa.github.io 聚合展示 Baby Future、Image Story 与 GPT Image Gen 三个独立产品入口。"
+      content="IJAA.AI 以策展式入口展示 Baby Future、Image Story 与 GPT Image Gen 三个图像产品。"
     />
-    <title>ijaa lab</title>
+    <title>IJAA.AI</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
       :root {
-        color-scheme: light;
-        --bg: #ffffff;
-        --fg: #111827;
-        --primary: #3b82f6;
-        --primary-strong: #2563eb;
-        --secondary: #10b981;
-        --accent: #f59e0b;
-        --muted: #f3f4f6;
-        --muted-strong: #e5e7eb;
-        --dark: #111827;
-        --white: #ffffff;
-        --radius-md: 6px;
-        --radius-lg: 8px;
+        color-scheme: dark;
+        --bg: #0c0c0d;
+        --hero-bg: #0c0d11;
+        --bridge-bg: #dfe9f3;
+        --showcase-bg: #eef1f4;
+        --footer-bg: #d8dde3;
+        --bg-elevated: #121214;
+        --panel: rgba(255, 255, 255, 0.03);
+        --line: rgba(255, 248, 236, 0.14);
+        --line-strong: rgba(255, 248, 236, 0.24);
+        --text: #f5f1e8;
+        --text-muted: rgba(245, 241, 232, 0.72);
+        --text-faint: rgba(245, 241, 232, 0.5);
+        --dark-text: #121722;
+        --dark-text-muted: rgba(18, 23, 34, 0.72);
+        --dark-text-faint: rgba(18, 23, 34, 0.54);
+        --dark-line: rgba(18, 23, 34, 0.12);
+        --dark-line-strong: rgba(18, 23, 34, 0.18);
+        --light-panel: rgba(255, 255, 255, 0.62);
+        --accent: #d6a35f;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 24px;
+        --max-width: 1380px;
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       * {
@@ -41,8 +54,9 @@
       body {
         margin: 0;
         min-width: 320px;
-        background: var(--bg);
-        color: var(--fg);
+        min-height: 100dvh;
+        background: var(--footer-bg);
+        color: var(--text);
         font-family: 'Outfit', sans-serif;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
@@ -54,480 +68,853 @@
         text-decoration: none;
       }
 
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      :focus-visible {
+        outline: 2px solid rgba(214, 163, 95, 0.92);
+        outline-offset: 4px;
+      }
+
       .site-shell {
-        width: min(calc(100% - 2rem), 80rem);
+        width: min(calc(100% - 2rem), var(--max-width));
         margin: 0 auto;
       }
 
-      .hero-stage {
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        background: var(--primary);
-        color: var(--white);
-      }
-
-      .site-nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 1rem 0;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .brand-mark {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.75rem;
-        height: 2.75rem;
-        border-radius: var(--radius-md);
-        background: var(--fg);
-        color: var(--white);
-        font-weight: 800;
-      }
-
-      .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 0.75rem;
-      }
-
-      .nav-link {
-        padding: 0.5rem 0.75rem;
-        border-radius: var(--radius-md);
-        font-size: 0.95rem;
+      .eyebrow,
+      .meta-label,
+      .product-index {
+        margin: 0;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.74rem;
         font-weight: 500;
-        transition: transform 200ms ease, background-color 200ms ease;
-      }
-
-      .nav-link:hover {
-        transform: scale(1.04);
-        background: rgba(255, 255, 255, 0.14);
-      }
-
-      .hero-screen {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        padding: clamp(2.5rem, 6vh, 5rem) 0;
-      }
-
-      .hero-grid,
-      .card-grid,
-      .metric-grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .hero-grid {
-        align-items: stretch;
-        gap: clamp(1rem, 2.5vw, 2rem);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
       }
 
       .eyebrow {
-        margin: 0 0 1rem;
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
+        color: var(--text-faint);
       }
 
       .display,
       .headline,
       .subhead {
         margin: 0;
-        letter-spacing: -0.02em;
-        font-weight: 800;
+        letter-spacing: -0.05em;
+        line-height: 0.94;
+        font-weight: 700;
       }
 
       .display {
-        font-size: clamp(2.8rem, 6vw + 0.5rem, 5.8rem);
-        line-height: 0.94;
+        font-size: clamp(3.4rem, 10vw, 8rem);
       }
 
       .headline {
-        font-size: clamp(2rem, 4vw + 0.5rem, 4rem);
-        line-height: 0.96;
+        font-size: clamp(1.8rem, 4vw, 3.4rem);
       }
 
       .subhead {
-        font-size: clamp(1.5rem, 3vw, 2.1rem);
-        line-height: 1;
+        font-size: clamp(1.4rem, 2.4vw, 2.15rem);
+        line-height: 1.02;
       }
 
       .lead {
         margin: 0;
-        max-width: 42rem;
-        font-size: 1.08rem;
-        line-height: 1.65;
+        max-width: 31rem;
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.64;
       }
 
       .body-copy {
         margin: 0;
-        font-size: 1rem;
-        line-height: 1.7;
+        color: var(--text-muted);
+        font-size: 0.98rem;
+        line-height: 1.64;
       }
 
-      .muted-copy {
-        color: rgba(255, 255, 255, 0.84);
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(20px);
+        background: rgba(12, 13, 17, 0.92);
+        border-bottom: 1px solid rgba(245, 241, 232, 0.06);
       }
 
-      .muted-copy.dark {
-        color: rgba(17, 24, 39, 0.72);
-      }
-
-      .stack-md > * + * {
-        margin-top: 1rem;
-      }
-
-      .stack-xl > * + * {
-        margin-top: 2rem;
-      }
-
-      .actions {
+      .site-header-inner {
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 4.5rem;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
         gap: 0.9rem;
       }
 
-      .btn {
+      .brand-mark {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 3.5rem;
-        padding: 0 1.25rem;
-        border-radius: var(--radius-md);
-        font-size: 0.96rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        transition: transform 200ms ease, background-color 200ms ease, color 200ms ease;
-      }
-
-      .btn:hover {
-        transform: scale(1.05);
-      }
-
-      .btn-secondary {
-        background: var(--muted);
-        color: var(--fg);
-      }
-
-      .btn-secondary:hover {
-        background: var(--muted-strong);
-      }
-
-      .btn-outline {
-        border: 4px solid currentColor;
-      }
-
-      .btn-outline:hover {
-        background: currentColor;
-        color: var(--white);
-      }
-
-      .poster-art {
-        position: relative;
-        min-height: clamp(20rem, 44svh, 30rem);
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.12);
-      }
-
-      .shape {
-        position: absolute;
-      }
-
-      .shape-circle {
+        min-width: 3.2rem;
+        min-height: 2.35rem;
+        padding: 0 0.9rem;
+        border: 1px solid var(--line);
         border-radius: 999px;
+        background: rgba(255, 255, 255, 0.02);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        font-size: 0.83rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
       }
 
-      .shape-square {
-        border-radius: var(--radius-md);
-      }
-
-      .shape-diamond {
-        border-radius: var(--radius-md);
-        transform: rotate(45deg);
-      }
-
-      .card {
+      .brand-copy {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        min-height: 100%;
-        padding: 1.5rem;
-        border-radius: var(--radius-lg);
-        background: var(--white);
-        color: var(--fg);
-        transition: transform 200ms ease, background-color 200ms ease;
+        gap: 0.16rem;
       }
 
-      .card:hover {
-        transform: scale(1.02);
-      }
-
-      .card-primary {
-        background: color-mix(in srgb, var(--primary) 12%, white);
-      }
-
-      .card-secondary {
-        background: color-mix(in srgb, var(--secondary) 14%, white);
-      }
-
-      .card-accent {
-        background: color-mix(in srgb, var(--accent) 18%, white);
-      }
-
-      .kicker {
-        font-size: 0.82rem;
+      .brand-title {
+        margin: 0;
+        font-size: 0.94rem;
         font-weight: 600;
-        letter-spacing: 0.24em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
-      .stat-number {
-        font-size: clamp(1.8rem, 3vw + 0.4rem, 3rem);
-        line-height: 0.95;
-        letter-spacing: -0.03em;
-        font-weight: 800;
+      .brand-note {
+        margin: 0;
+        color: var(--text-faint);
+        font-size: 0.82rem;
       }
 
-      .tone-primary {
-        color: var(--primary);
+      .header-link {
+        color: var(--text-faint);
+        font-size: 0.94rem;
+        transition: color 0.3s var(--ease-out);
       }
 
-      .tone-secondary {
-        color: var(--secondary);
+      .header-link:hover,
+      .header-link:focus-visible {
+        color: var(--text);
       }
 
-      .tone-accent {
-        color: var(--accent);
+      .hero {
+        position: relative;
+        min-height: calc(100dvh - 4.5rem);
+        padding: 3.5rem 0 4rem;
+        background:
+          radial-gradient(circle at top left, rgba(214, 163, 95, 0.16), transparent 28%),
+          radial-gradient(circle at 78% 12%, rgba(126, 123, 255, 0.12), transparent 24%),
+          linear-gradient(180deg, #12141b 0%, var(--hero-bg) 100%);
       }
 
-      .section {
-        padding: clamp(3rem, 6vh, 5rem) 0;
+      .hero-layout {
+        display: grid;
+        gap: 2rem;
+        align-items: end;
       }
 
-      .section-muted {
-        background: var(--muted);
+      .hero-copy {
+        display: grid;
+        gap: 1.5rem;
+        align-content: start;
       }
 
-      .section-dark {
-        background: var(--dark);
-        color: var(--white);
+      .hero-summary {
+        display: grid;
+        gap: 1rem;
       }
 
-      .card-link {
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        align-items: center;
+      }
+
+      .button-link,
+      .text-link {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        width: fit-content;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
+        gap: 0.7rem;
+        min-height: 3rem;
+        transition:
+          transform 0.3s var(--ease-out),
+          border-color 0.3s var(--ease-out),
+          color 0.3s var(--ease-out),
+          background-color 0.3s var(--ease-out);
       }
 
-      .card-link:hover {
+      .button-link {
+        padding: 0 1rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+      }
+
+      .button-link:hover,
+      .button-link:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--line-strong);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .text-link {
+        color: var(--text-faint);
+      }
+
+      .text-link:hover,
+      .text-link:focus-visible {
+        color: var(--text);
+      }
+
+      .link-arrow {
+        transition: transform 0.3s var(--ease-out);
+      }
+
+      .button-link:hover .link-arrow,
+      .button-link:focus-visible .link-arrow,
+      .text-link:hover .link-arrow,
+      .text-link:focus-visible .link-arrow,
+      .product-link:hover .link-arrow,
+      .product-link:focus-visible .link-arrow {
+        transform: translateX(4px);
+      }
+
+      .hero-mosaic {
+        position: relative;
+        display: grid;
+        gap: 0.85rem;
+        min-height: 24rem;
+      }
+
+      .mosaic-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        animation: stage-enter 900ms var(--ease-out) both;
+      }
+
+      .mosaic-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 28%, rgba(6, 6, 8, 0.72) 100%);
+      }
+
+      .mosaic-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.9s var(--ease-out);
+      }
+
+      .mosaic-card:hover img,
+      .mosaic-card:focus-within img {
         transform: scale(1.04);
       }
 
-      @media (min-width: 720px) {
-        .hero-grid {
-          grid-template-columns: 1fr 1fr;
+      .mosaic-meta {
+        position: absolute;
+        right: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+        z-index: 1;
+        display: grid;
+        gap: 0.22rem;
+      }
+
+      .mosaic-title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .mosaic-copy {
+        margin: 0;
+        color: rgba(245, 241, 232, 0.7);
+        font-size: 0.88rem;
+      }
+
+      .mosaic-primary {
+        min-height: 16rem;
+      }
+
+      .mosaic-secondary {
+        min-height: 11rem;
+      }
+
+      .mosaic-card:nth-child(2) {
+        animation-delay: 120ms;
+      }
+
+      .mosaic-card:nth-child(3) {
+        animation-delay: 220ms;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+
+      .bridge {
+        position: relative;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0)),
+          var(--bridge-bg);
+        color: var(--dark-text);
+      }
+
+      .bridge::before,
+      .bridge::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        width: min(calc(100% - 2rem), var(--max-width));
+        transform: translateX(-50%);
+        border-top: 1px solid var(--dark-line);
+      }
+
+      .bridge::before {
+        top: 0;
+      }
+
+      .bridge::after {
+        bottom: 0;
+      }
+
+      .bridge-layout {
+        display: grid;
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .bridge-stat {
+        display: grid;
+        gap: 0.4rem;
+      }
+
+      .bridge-value {
+        margin: 0;
+        font-size: clamp(3rem, 8vw, 5.2rem);
+        letter-spacing: -0.08em;
+        line-height: 0.9;
+        font-weight: 700;
+      }
+
+      .bridge-note {
+        margin: 0;
+        color: var(--dark-text-faint);
+        max-width: 12rem;
+        font-size: 0.88rem;
+        line-height: 1.5;
+      }
+
+      .bridge .eyebrow,
+      .bridge .lead,
+      .bridge .body-copy {
+        color: var(--dark-text-muted);
+      }
+
+      .bridge .eyebrow {
+        color: var(--dark-text-faint);
+      }
+
+      .showcase {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0)),
+          var(--showcase-bg);
+        color: var(--dark-text);
+      }
+
+      .showcase .eyebrow,
+      .showcase .lead,
+      .showcase .body-copy,
+      .showcase .product-index {
+        color: var(--dark-text-muted);
+      }
+
+      .showcase .eyebrow,
+      .showcase .product-index,
+      .showcase .tag {
+        color: var(--dark-text-faint);
+      }
+
+      .showcase-head {
+        display: grid;
+        gap: 0.85rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .showcase-list {
+        display: grid;
+        gap: 2.4rem;
+      }
+
+      .product-article {
+        display: grid;
+        gap: 1rem;
+        padding-top: 1.6rem;
+        border-top: 1px solid var(--dark-line);
+      }
+
+      .product-copy {
+        display: grid;
+        gap: 0.95rem;
+        align-content: center;
+      }
+
+      .product-title-group {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .product-title {
+        margin: 0;
+        font-size: clamp(1.85rem, 3.6vw, 3rem);
+        letter-spacing: -0.05em;
+        line-height: 0.96;
+        font-weight: 700;
+      }
+
+      .product-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0 0.8rem;
+        border: 1px solid var(--dark-line);
+        border-radius: 999px;
+        color: var(--dark-text-faint);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .product-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        width: fit-content;
+        min-height: 2.6rem;
+        color: var(--dark-text);
+        font-size: 0.95rem;
+      }
+
+      .product-visual {
+        position: relative;
+        overflow: hidden;
+        width: min(100%, 32rem);
+        border: 1px solid var(--dark-line);
+        border-radius: var(--radius-lg);
+        background: var(--light-panel);
+        box-shadow: 0 24px 60px rgba(36, 46, 66, 0.14);
+        justify-self: start;
+        align-self: center;
+      }
+
+      .product-visual::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 0;
+        height: 24%;
+        background: linear-gradient(180deg, transparent, rgba(133, 145, 161, 0.16));
+      }
+
+      .product-visual img {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        aspect-ratio: 1.3 / 1;
+        object-fit: cover;
+        transition: transform 0.7s var(--ease-out);
+      }
+
+      .product-visual:hover img,
+      .product-visual:focus-within img {
+        transform: scale(1.03);
+      }
+
+      .footer {
+        padding: 3rem 0 4rem;
+        border-top: 1px solid var(--dark-line);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0)),
+          var(--footer-bg);
+        color: var(--dark-text);
+      }
+
+      .footer-layout {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .footer-title {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem 1.4rem;
+        justify-content: flex-start;
+      }
+
+      .footer-link {
+        color: var(--dark-text-faint);
+        transition: color 0.3s var(--ease-out);
+      }
+
+      .footer-link:hover,
+      .footer-link:focus-visible {
+        color: var(--dark-text);
+      }
+
+      .footer-note {
+        margin: 0;
+        color: var(--dark-text-faint);
+        font-size: 0.84rem;
+      }
+
+      .footer .eyebrow {
+        color: var(--dark-text-faint);
+      }
+
+      @keyframes stage-enter {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
 
-        .card-grid,
-        .metric-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
 
-      @media (min-width: 1024px) {
+      @media (min-width: 720px) {
+        .hero {
+          min-height: calc(100dvh - 4.5rem);
+          padding: 4.75rem 0 5rem;
+        }
+
+        .hero-mosaic {
+          grid-template-columns: 1.2fr 0.95fr;
+          grid-template-rows: minmax(11rem, 15rem) minmax(11rem, 13rem);
+        }
+
+        .mosaic-primary {
+          grid-row: 1 / span 2;
+          min-height: 100%;
+        }
+
+        .hero-actions {
+          gap: 1rem 1.2rem;
+        }
+
+        .bridge-layout,
+        .footer-layout {
+          grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr);
+        }
+      }
+
+      @media (min-width: 960px) {
         .site-shell {
-          width: min(calc(100% - 3rem), 80rem);
+          width: min(calc(100% - 3rem), var(--max-width));
         }
 
-        .card-grid {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
+        .hero-layout {
+          grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+          gap: 2.6rem;
         }
 
-        .metric-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+        .showcase-head {
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+          align-items: end;
+        }
+
+        .product-article {
+          grid-template-columns: minmax(0, 1.06fr) minmax(18rem, 0.94fr);
+          gap: 1.7rem;
+          padding-top: 2rem;
+        }
+
+        .product-article.reverse {
+          grid-template-columns: minmax(18rem, 0.94fr) minmax(0, 1.06fr);
+        }
+
+        .product-article.reverse .product-copy {
+          order: 2;
+        }
+
+        .product-article.reverse .product-visual {
+          order: 1;
+          justify-self: start;
+        }
+      }
+
+      @media (max-width: 719px) {
+        .site-header-inner {
+          min-height: 4rem;
+        }
+
+        .brand-note,
+        .header-link {
+          display: none;
+        }
+
+        .hero {
+          min-height: calc(100dvh - 4rem);
+          padding-top: 2.4rem;
+        }
+
+        .hero-mosaic {
+          min-height: auto;
+        }
+
+        .mosaic-primary,
+        .mosaic-secondary {
+          min-height: 14rem;
+        }
+
+        .section {
+          padding: 3rem 0;
+        }
+
+        .product-visual {
+          width: 100%;
+        }
+
+        .product-visual img {
+          aspect-ratio: 1.18 / 1;
         }
       }
     </style>
   </head>
   <body>
-    <section class="hero-stage">
-      <div class="site-shell">
-        <header class="site-nav">
-          <a class="brand" href="#top">
-            <span class="brand-mark">IJ</span>
-            <span>ijaa lab</span>
-          </a>
-          <nav class="nav-links" aria-label="Primary">
-            <a class="nav-link" href="#products">Products</a>
-            <a class="nav-link" href="#system">System</a>
-            <a class="nav-link" href="/flat-preview/">Preview</a>
-          </nav>
-        </header>
+    <header class="site-header">
+      <div class="site-shell site-header-inner">
+        <a class="brand" href="/">
+          <span class="brand-mark">IJAA.AI</span>
+          <span class="brand-copy">
+            <span class="brand-title">Image Interfaces</span>
+            <span class="brand-note">纪念、叙事与创作的三种入口</span>
+          </span>
+        </a>
+        <a class="header-link" href="#showcase">Projects</a>
       </div>
-
-      <div class="site-shell hero-screen" id="top">
-        <div class="hero-grid">
-          <div class="stack-xl">
-            <div class="stack-md">
-              <p class="eyebrow">ijaa hub / flat design</p>
-              <h1 class="display">三个站点，统一一套更像数字海报的 landing 语言。</h1>
-              <p class="lead muted-copy">
-                `ijaa.github.io` 作为总入口，承接 Baby Future、Image Story 与 GPT Image Gen。
-                这次正式版统一切到 Flat Design：零阴影、强色块、几何背景、靠字重和版式建立层级。
-              </p>
-            </div>
-
-            <div class="actions">
-              <a class="btn btn-secondary" href="/baby-future/">Open Baby Future</a>
-              <a class="btn btn-outline" href="/image-story/">Open Image Story</a>
-              <a class="btn btn-secondary" href="/gpt-image-gen/">Open GPT Image Gen</a>
-            </div>
-          </div>
-
-          <div class="poster-art" aria-hidden="true">
-            <div class="shape shape-circle" style="width: 12rem; height: 12rem; right: 2rem; top: 2rem; background: rgba(255, 255, 255, 0.22);"></div>
-            <div class="shape shape-square" style="width: 10rem; height: 10rem; left: 2rem; top: 4rem; background: rgba(255, 255, 255, 0.14);"></div>
-            <div class="shape shape-diamond" style="width: 7rem; height: 7rem; right: 8rem; bottom: 5.5rem; background: rgba(245, 158, 11, 0.92);"></div>
-            <div class="shape shape-square" style="width: 9rem; height: 9rem; left: 6rem; bottom: 2rem; background: rgba(16, 185, 129, 0.88);"></div>
-            <div class="shape" style="left: 1.5rem; right: 1.5rem; bottom: 1.5rem; display: grid; gap: 0.75rem; grid-template-columns: repeat(3, minmax(0, 1fr));">
-              <div class="card">
-                <span class="kicker">Visual Rule</span>
-                <span class="stat-number tone-primary">0</span>
-                <span class="body-copy muted-copy dark">Shadows</span>
-              </div>
-              <div class="card">
-                <span class="kicker">Landing Set</span>
-                <span class="stat-number tone-secondary">3</span>
-                <span class="body-copy muted-copy dark">Unified Pages</span>
-              </div>
-              <div class="card">
-                <span class="kicker">Feedback</span>
-                <span class="stat-number tone-accent">200ms</span>
-                <span class="body-copy muted-copy dark">Direct Motion</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </header>
 
     <main>
-      <section class="section" id="products">
-        <div class="site-shell">
-          <div class="stack-md" style="margin-bottom: 2rem;">
-            <p class="eyebrow" style="color: var(--fg);">Products</p>
-            <h2 class="headline">三个产品入口，各自独立，但共享同一套发布骨架。</h2>
-            <p class="lead" style="color: rgba(17, 24, 39, 0.72);">
-              主站负责关系说明和产品分发，三个子站各自维护独立源码与构建，再统一发布到同一域名下。
-            </p>
+      <section class="hero">
+        <div class="site-shell hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Curated Image Products</p>
+            <div class="hero-summary">
+              <h1 class="display">IJAA.AI</h1>
+              <h2 class="headline">把图像做成纪念、故事和创作界面。</h2>
+              <p class="lead">
+                三个入口，分别处理记忆、叙事和生成控制。
+              </p>
+            </div>
+            <div class="hero-actions">
+              <a class="button-link" href="#showcase">
+                浏览项目
+                <span class="link-arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="text-link" href="mailto:hello@ijaa.io">
+                联系我们
+                <span class="link-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
 
-          <div class="card-grid">
-            <article class="card card-primary">
-              <p class="kicker">product / 01</p>
-              <h3 class="subhead">Baby Future</h3>
-              <p class="body-copy muted-copy dark">
-                从四维超声照出发，生成一页更有纪念价值、更适合家庭传播的未来宝宝介绍页。
-              </p>
-              <a class="card-link" href="/baby-future/">Open Landing</a>
+          <div class="hero-mosaic" aria-label="IJAA.AI 产品主视觉拼贴">
+            <article class="mosaic-card mosaic-primary">
+              <img
+                src="/assets/baby-future/image_20260514_184023.png"
+                alt="Baby Future 产品主视觉"
+              />
+              <div class="mosaic-meta">
+                <p class="mosaic-title">Baby Future</p>
+                <p class="mosaic-copy">超声影像的纪念页。</p>
+              </div>
             </article>
 
-            <article class="card card-secondary">
-              <p class="kicker">product / 02</p>
-              <h3 class="subhead">Image Story</h3>
-              <p class="body-copy muted-copy dark">
-                让单张图片开始叙事，把角色、场景和章节组织成可继续生成的故事绘本体验。
-              </p>
-              <a class="card-link" href="/image-story/">Open Landing</a>
+            <article class="mosaic-card mosaic-secondary">
+              <img
+                src="/assets/image-story/image_20260514_184020.png"
+                alt="Image Story 产品主视觉"
+              />
+              <div class="mosaic-meta">
+                <p class="mosaic-title">Image Story</p>
+                <p class="mosaic-copy">从单图长出叙事。</p>
+              </div>
             </article>
 
-            <article class="card card-accent">
-              <p class="kicker">product / 03</p>
-              <h3 class="subhead">GPT Image Gen</h3>
-              <p class="body-copy muted-copy dark">
-                浏览器直连 OpenAI Responses API 的图片生成工作台，支持参数配置、参考图上传、队列与历史记录。
-              </p>
-              <a class="card-link" href="/gpt-image-gen/">Open Tool</a>
-            </article>
-
-            <article class="card card-accent">
-              <p class="kicker">delivery</p>
-              <h3 class="subhead">GitHub Pages 聚合发布</h3>
-              <p class="body-copy muted-copy dark">
-                根站负责分发，子站保持独立源码仓库，构建后统一挂在 `/baby-future`、`/image-story` 与 `/gpt-image-gen`。
-              </p>
-              <span class="card-link">Stable Paths</span>
-            </article>
-
-            <article class="card">
-              <p class="kicker">system</p>
-              <h3 class="subhead">Shared Flat Tokens</h3>
-              <p class="body-copy muted-copy dark">
-                `Outfit`、6/8px 圆角、白/灰/蓝/绿/橙五色体系、无阴影按钮与卡片、靠版式建立层级。
-              </p>
-              <a class="card-link" href="/flat-preview/">Preview Archive</a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-muted" id="system">
-        <div class="site-shell">
-          <div class="stack-md" style="margin-bottom: 2rem;">
-            <p class="eyebrow" style="color: var(--fg);">What Changed</p>
-            <h2 class="headline">不是更简洁，而是更明确。</h2>
-          </div>
-
-          <div class="metric-grid">
-            <article class="card">
-              <p class="kicker">Typography</p>
-              <p class="stat-number tone-primary">Bold</p>
-              <p class="body-copy muted-copy dark">标题字重和比例更激进，层级不靠卡片阴影，而靠尺寸、位置和颜色对比。</p>
-            </article>
-            <article class="card">
-              <p class="kicker">Color Blocking</p>
-              <p class="stat-number tone-secondary">Sharp</p>
-              <p class="body-copy muted-copy dark">分区之间直接切色，不做柔和过渡，页面更像海报拼接而不是漂浮面板集合。</p>
-            </article>
-            <article class="card">
-              <p class="kicker">Feedback</p>
-              <p class="stat-number tone-accent">Fast</p>
-              <p class="body-copy muted-copy dark">按钮、卡片、入口链接都用即时缩放和颜色切换给反馈，保持数字产品的干脆感。</p>
+            <article class="mosaic-card mosaic-secondary">
+              <img
+                src="/assets/gpt-image-gen/image_20260514_184020.png"
+                alt="GPT Image Gen 产品主视觉"
+              />
+              <div class="mosaic-meta">
+                <p class="mosaic-title">GPT Image Gen</p>
+                <p class="mosaic-copy">图像生成工作台。</p>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section section-dark">
+      <section class="section bridge">
+        <div class="site-shell bridge-layout">
+          <div class="bridge-stat">
+            <p class="eyebrow">Why These Three</p>
+            <p class="bridge-value">03</p>
+            <p class="bridge-note">同一条图像能力线索的三种展开。</p>
+          </div>
+          <p class="lead">
+            从记忆到叙事，再到创作控制，IJAA.AI 关心的不是单次生成，而是图像如何被继续使用。
+          </p>
+        </div>
+      </section>
+
+      <section class="section showcase" id="showcase">
         <div class="site-shell">
-          <div class="stack-md">
-            <p class="eyebrow">Routing</p>
-            <h2 class="headline">现在这不是测试页，而是正式 landing 体系。</h2>
-            <p class="lead muted-copy">
-              预览页仍然保留用于对比，但主站与两个子站正式入口已经切换到这套 Flat Design 语言。
+          <div class="showcase-head">
+            <div>
+              <p class="eyebrow">Selected Projects</p>
+              <h2 class="headline">三个项目，三种图像体验。</h2>
+            </div>
+            <p class="body-copy">
+              不是同一种产品语气，但共享同一种图像判断。
             </p>
+          </div>
+
+          <div class="showcase-list">
+            <article class="product-article">
+              <div class="product-copy">
+                <p class="product-index">Product / 01</p>
+                <div class="product-title-group">
+                  <h3 class="product-title">Baby Future</h3>
+                  <p class="lead">
+                    把四维超声照整理成一张适合家庭分享的纪念页。
+                  </p>
+                </div>
+                <div class="product-tags">
+                  <span class="tag">Memory</span>
+                  <span class="tag">Family Share</span>
+                </div>
+                <a class="product-link" href="/baby-future/">
+                  进入项目
+                  <span class="link-arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+              <a class="product-visual" href="/baby-future/">
+                <img
+                  src="/assets/baby-future/image_20260514_184023.png"
+                  alt="Baby Future 纪念页产品海报"
+                />
+              </a>
+            </article>
+
+            <article class="product-article reverse">
+              <div class="product-copy">
+                <p class="product-index">Product / 02</p>
+                <div class="product-title-group">
+                  <h3 class="product-title">Image Story</h3>
+                  <p class="lead">
+                    让一张静止图片继续往前，长出绘本式叙事。
+                  </p>
+                </div>
+                <div class="product-tags">
+                  <span class="tag">Narrative</span>
+                  <span class="tag">Picture Book</span>
+                </div>
+                <a class="product-link" href="/image-story/">
+                  进入项目
+                  <span class="link-arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+              <a class="product-visual" href="/image-story/">
+                <img
+                  src="/assets/image-story/image_20260514_184020.png"
+                  alt="Image Story 绘本叙事产品海报"
+                />
+              </a>
+            </article>
+
+            <article class="product-article">
+              <div class="product-copy">
+                <p class="product-index">Product / 03</p>
+                <div class="product-title-group">
+                  <h3 class="product-title">GPT Image Gen</h3>
+                  <p class="lead">
+                    把参数、生成和结果放进同一个浏览器工作台。
+                  </p>
+                </div>
+                <div class="product-tags">
+                  <span class="tag">Workbench</span>
+                  <span class="tag">Image Control</span>
+                </div>
+                <a class="product-link" href="/gpt-image-gen/">
+                  进入项目
+                  <span class="link-arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+              <a class="product-visual" href="/gpt-image-gen/">
+                <img
+                  src="/assets/gpt-image-gen/image_20260514_184020.png"
+                  alt="GPT Image Gen 浏览器工作台产品海报"
+                />
+              </a>
+            </article>
           </div>
         </div>
       </section>
     </main>
+
+    <footer class="footer">
+      <div class="site-shell footer-layout">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <p class="footer-title">继续看产品，或者直接来聊。</p>
+        </div>
+        <div>
+          <div class="footer-links">
+            <a class="footer-link" href="mailto:hello@ijaa.io">hello@ijaa.io</a>
+            <a class="footer-link" href="https://github.com/ijaa">github.com/ijaa</a>
+          </div>
+          <p class="footer-note">© IJAA.AI</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
