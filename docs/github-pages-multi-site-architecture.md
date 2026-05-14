@@ -7,6 +7,7 @@
 - `ijaa/ijaa.github.io`
 - `ijaa/baby-future`
 - `ijaa/image-story`
+- `ijaa/gpt-image-gen`
 
 相关设计文档：
 
@@ -26,6 +27,7 @@
 - `/` 根入口页
 - `/baby-future`
 - `/image-story`
+- `/gpt-image-gen`
 
 ## 2. 当前仓库分工
 
@@ -66,6 +68,19 @@
 
 - [vite.config.js](/Users/liukai/Documents/workspace/other/kkstudios/image-story/vite.config.js)
 - [.github/workflows/ci.yml](/Users/liukai/Documents/workspace/other/kkstudios/image-story/.github/workflows/ci.yml)
+
+### 2.4 产品仓库：`gpt-image-gen`
+
+职责：
+
+- 维护图片生成工具静态页面源码
+- 运行最小 lint / test / build
+- 在 `main` push 成功后，自动触发 `ijaa.github.io` 的统一发布流程
+
+关键文件：
+
+- [package.json](/Users/liukai/Documents/workspace/other/kkstudios/gpt-image-gen/package.json)
+- [.github/workflows/ci.yml](/Users/liukai/Documents/workspace/other/kkstudios/gpt-image-gen/.github/workflows/ci.yml)
 
 ## 3. 架构原则
 
@@ -118,6 +133,9 @@ dist/
     index.html
     404.html
     assets/
+  gpt-image-gen/
+    index.html
+    404.html
 ```
 
 含义：
@@ -126,6 +144,7 @@ dist/
 - `dist/404.html` 是根入口兜底
 - `dist/baby-future/index.html` 对应 `/baby-future/`
 - `dist/image-story/index.html` 对应 `/image-story/`
+- `dist/gpt-image-gen/index.html` 对应 `/gpt-image-gen/`
 - 每个子项目的 `404.html` 由其 `index.html` 复制而来，用于 SPA 刷新兜底
 
 ## 5. 构建原理
@@ -138,6 +157,7 @@ dist/
 
 - `baby-future` 构建时注入 `VITE_BASE_PATH=/baby-future/`
 - `image-story` 构建时注入 `VITE_BASE_PATH=/image-story/`
+- `gpt-image-gen` 为静态单页站，直接输出到 `dist/`，不依赖额外 base 注入
 
 示例配置：
 
@@ -179,22 +199,27 @@ GitHub Pages 不原生支持前端路由深刷。
 4. 将其 `dist/` 复制到 `ijaa.github.io/dist/baby-future`
 5. 构建 `image-story`
 6. 将其 `dist/` 复制到 `ijaa.github.io/dist/image-story`
-7. 复制根入口 `index.html` 为根 `404.html`
+7. 构建 `gpt-image-gen`
+8. 将其 `dist/` 复制到 `ijaa.github.io/dist/gpt-image-gen`
+9. 复制根入口 `index.html` 为根 `404.html`
 
 本地默认读取：
 
 - `../baby-future`
 - `../image-story`
+- `../gpt-image-gen`
 
 GitHub Actions 环境读取：
 
 - `repos/baby-future`
 - `repos/image-story`
+- `repos/gpt-image-gen`
 
 这是通过环境变量实现的：
 
 - `BABY_FUTURE_DIR`
 - `IMAGE_STORY_DIR`
+- `GPT_IMAGE_GEN_DIR`
 
 ## 6. 部署原理
 
@@ -214,15 +239,16 @@ GitHub Actions 环境读取：
 1. checkout `ijaa.github.io`
 2. checkout `baby-future`
 3. checkout `image-story`
-4. 安装 Node
-5. 运行 `npm ci`
-6. 运行 `npm run build`
-7. 上传 Pages artifact
-8. `deploy-pages`
+4. checkout `gpt-image-gen`
+5. 安装 Node
+6. 运行 `npm ci`
+7. 运行 `npm run build`
+8. 上传 Pages artifact
+9. `deploy-pages`
 
 ### 6.2 私有仓库权限
 
-因为 `baby-future` 和 `image-story` 是私有仓库，所以 `ijaa.github.io` 的 workflow 不能只依赖默认 `GITHUB_TOKEN`。
+因为 `baby-future`、`image-story` 和 `gpt-image-gen` 是私有仓库，所以 `ijaa.github.io` 的 workflow 不能只依赖默认 `GITHUB_TOKEN`。
 
 当前使用的 secret：
 
@@ -234,7 +260,7 @@ GitHub Actions 环境读取：
 
 ### 6.3 产品仓库触发统一发布
 
-两个产品仓库的 CI workflow 已配置在质量检查完成后自动触发 `ijaa.github.io` 发布。
+三个产品仓库的 CI workflow 已配置在质量检查完成后自动触发 `ijaa.github.io` 发布。
 
 关键逻辑：
 

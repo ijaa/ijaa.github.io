@@ -38,6 +38,13 @@ jobs:
           path: repos/image-story
           token: ${{ secrets.PAGES_REPO_TOKEN }}
 
+      - name: Checkout gpt-image-gen
+        uses: actions/checkout@v5
+        with:
+          repository: ijaa/gpt-image-gen
+          path: repos/gpt-image-gen
+          token: ${{ secrets.PAGES_REPO_TOKEN }}
+
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
@@ -46,6 +53,7 @@ jobs:
           cache-dependency-path: |
             repos/baby-future/package-lock.json
             repos/image-story/package-lock.json
+            repos/gpt-image-gen/package-lock.json
 
       - name: Install publish repo deps
         run: npm ci
@@ -55,6 +63,7 @@ jobs:
         env:
           BABY_FUTURE_DIR: repos/baby-future
           IMAGE_STORY_DIR: repos/image-story
+          GPT_IMAGE_GEN_DIR: repos/gpt-image-gen
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

@@ -20,6 +20,13 @@ const productRepos = [
       : resolve(root, '..', 'image-story'),
     basePath: '/image-story/',
   },
+  {
+    name: 'gpt-image-gen',
+    repoDir: process.env.GPT_IMAGE_GEN_DIR
+      ? resolve(root, process.env.GPT_IMAGE_GEN_DIR)
+      : resolve(root, '..', 'gpt-image-gen'),
+    basePath: '/gpt-image-gen/',
+  },
 ]
 
 const run = (command, cwd, extraEnv = {}) => {
