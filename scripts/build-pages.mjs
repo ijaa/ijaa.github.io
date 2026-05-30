@@ -4,7 +4,7 @@ import { execSync } from 'node:child_process'
 
 const root = process.cwd()
 const distDir = resolve(root, 'dist')
-const siteDir = resolve(root, 'site')
+const siteDistDir = resolve(root, '.site-dist')
 const productRepos = [
   {
     name: 'baby-future',
@@ -40,7 +40,9 @@ const run = (command, cwd, extraEnv = {}) => {
 rmSync(distDir, { recursive: true, force: true })
 mkdirSync(distDir, { recursive: true })
 
-cpSync(siteDir, distDir, { recursive: true })
+run('vite build --outDir .site-dist --emptyOutDir', root)
+cpSync(siteDistDir, distDir, { recursive: true })
+rmSync(siteDistDir, { recursive: true, force: true })
 
 for (const product of productRepos) {
   if (!existsSync(product.repoDir)) {

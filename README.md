@@ -1,26 +1,58 @@
 # ijaa.github.io
 
-`ijaa.github.io` 是统一的 GitHub Pages 发布仓库。
+IJAA 的 GitHub Pages 根站与子站聚合仓库。
 
-详细架构与扩展说明见：
+## 结构
 
-- [docs/github-pages-multi-site-architecture.md](/Users/liukai/Documents/workspace/other/kkstudios/ijaa.github.io/docs/github-pages-multi-site-architecture.md)
+- `src/`：根站 React 应用
+- `site/`：Pages 入口静态站点
+- `public/reference/`：3D 模型、纹理、字体、音频资源
+- `scripts/build-pages.mjs`：构建并聚合子站
+- `docs/`：架构、进度与问题记录
+- `e2e/`：Playwright 测试
 
-## Recommended Architecture
+## 开发
 
-- `ijaa.github.io` 负责根入口和最终发布
-- `baby-future`、`image-story` 与 `gpt-image-gen` 作为独立源码仓库存在
-- 本仓库在构建时聚合三个子项目产物到同一 `dist/` 下
+```bash
+npm run dev
+```
 
-## Scripts
+```bash
+npm run build:site
+```
 
-- `npm run build` 聚合本地三个产品仓库并生成 Pages 输出
-- `npm run preview` 在本地预览 `dist/`
+```bash
+npm run build
+```
 
-## Required Secret
+```bash
+npm run preview
+```
 
-GitHub Actions 需要一个能读取私有仓库的 token：
+预览地址：
 
-- `PAGES_REPO_TOKEN`
+```text
+http://localhost:4173
+```
 
-建议使用对 `ijaa/baby-future`、`ijaa/image-story` 和 `ijaa/gpt-image-gen` 具备只读权限的 fine-grained PAT。
+## 内容现状
+
+- 首页标题为 `IJAA` + `AI探索者`
+- about 区域文案聚焦 AI Agent、图片生成艺术和独立开发
+- 联系邮箱统一为 `kailiu2013@gmail.com`
+- 项目图片点击直接跳转到对应项目地址
+- 顶部声音按钮控制双循环背景音轨
+
+## 测试
+
+已固定 `@playwright/test@1.60.0`，只安装 Chromium。
+
+```bash
+npx playwright test e2e/project-links.spec.ts
+npx playwright test e2e/soundscape.spec.ts
+npx playwright test e2e/contact-links.spec.ts
+```
+
+## 部署
+
+GitHub Actions 需要可读取子仓库的 `PAGES_REPO_TOKEN`。
