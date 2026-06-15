@@ -94,6 +94,7 @@ npm run preview
    - `../baby-future`
    - `../image-story`
    - `../gpt-image-gen`
+   - `../poem-gallery`
 5. 将 `dist/index.html` 复制为 `dist/404.html`。
 
 子仓库路径可用环境变量覆盖：
@@ -102,6 +103,7 @@ npm run preview
 BABY_FUTURE_DIR=../custom-baby-future npm run build
 IMAGE_STORY_DIR=../custom-image-story npm run build
 GPT_IMAGE_GEN_DIR=../custom-gpt-image-gen npm run build
+POEM_GALLERY_DIR=../custom-poem-gallery npm run build
 ```
 
 ## 验证方式
@@ -122,7 +124,7 @@ npx playwright test e2e/contact-links.spec.ts
 
 覆盖点：
 
-- 三个项目图片点击直接跳转。
+- 项目图片点击直接跳转。
 - 声音按钮可开关并触发播放/暂停。
 - 联系区邮箱按钮可点击并触发 `mailto:kailiu2013@gmail.com`。
 

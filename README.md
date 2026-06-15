@@ -8,7 +8,7 @@ IJAA 的 GitHub Pages 根站与子站聚合仓库。
 - `site/`：Pages 入口静态站点
 - `public/reference/`：3D 模型、纹理、字体、音频资源
 - `scripts/build-pages.mjs`：构建并聚合子站
-- `docs/`：架构、进度与问题记录
+- `docs/`：架构、进度、问题记录与子项目接入流程
 - `e2e/`：Playwright 测试
 
 ## 开发
@@ -56,3 +56,9 @@ npx playwright test e2e/contact-links.spec.ts
 ## 部署
 
 GitHub Actions 需要可读取子仓库的 `PAGES_REPO_TOKEN`。
+
+新增私有子项目并聚合到主页时，参考：
+
+```text
+docs/add-private-subsite-guide.md
+```
