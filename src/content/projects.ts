@@ -36,6 +36,15 @@ export const projects: Project[] = [
     image: '/assets/gpt-image-gen/gpt_image_20260529_215309_641013.png',
     accent: '#f4b447',
   },
+  {
+    id: 'poem-gallery',
+    index: '04',
+    title: 'Poem Gallery',
+    description: '沉浸式浏览 124 张古诗词竖版卡片，配合缩略图切换与背景音乐欣赏。',
+    href: 'https://ijaa.github.io/poem-gallery/',
+    image: '/assets/poem-gallery/poem-gallery-cover.png',
+    accent: '#7f9f8d',
+  },
 ]
 
 export const services = [

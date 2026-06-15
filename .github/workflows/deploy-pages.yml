@@ -45,6 +45,13 @@ jobs:
           path: repos/gpt-image-gen
           token: ${{ secrets.PAGES_REPO_TOKEN }}
 
+      - name: Checkout poem-gallery
+        uses: actions/checkout@v5
+        with:
+          repository: ijaa/poem-gallery
+          path: repos/poem-gallery
+          token: ${{ secrets.PAGES_REPO_TOKEN }}
+
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
@@ -54,6 +61,7 @@ jobs:
             repos/baby-future/package-lock.json
             repos/image-story/package-lock.json
             repos/gpt-image-gen/package-lock.json
+            repos/poem-gallery/package-lock.json
 
       - name: Install publish repo deps
         run: npm ci
@@ -64,6 +72,7 @@ jobs:
           BABY_FUTURE_DIR: repos/baby-future
           IMAGE_STORY_DIR: repos/image-story
           GPT_IMAGE_GEN_DIR: repos/gpt-image-gen
+          POEM_GALLERY_DIR: repos/poem-gallery
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

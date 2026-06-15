@@ -13,6 +13,10 @@ const projects = [
     title: 'GPT Image Gen',
     href: 'https://ijaa.github.io/gpt-image-gen/',
   },
+  {
+    title: 'Poem Gallery',
+    href: 'https://ijaa.github.io/poem-gallery/',
+  },
 ];
 
 test.describe('project image links', () => {

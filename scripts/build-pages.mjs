@@ -27,6 +27,13 @@ const productRepos = [
       : resolve(root, '..', 'gpt-image-gen'),
     basePath: '/gpt-image-gen/',
   },
+  {
+    name: 'poem-gallery',
+    repoDir: process.env.POEM_GALLERY_DIR
+      ? resolve(root, process.env.POEM_GALLERY_DIR)
+      : resolve(root, '..', 'poem-gallery'),
+    basePath: '/poem-gallery/',
+  },
 ]
 
 const run = (command, cwd, extraEnv = {}) => {
