@@ -54,6 +54,15 @@ export const projects: Project[] = [
     image: '/assets/image-mosaic/image-mosaic-cover.png',
     accent: '#74a85d',
   },
+  {
+    id: 'mdeye-site',
+    index: '06',
+    title: 'MDEye',
+    description: '不超过 4MB 的 macOS Markdown 阅读器，支持离线预览、公式图表与 PDF 导出。',
+    href: 'https://ijaa.github.io/mdeye-site/',
+    image: '/assets/mdeye-site/mdeye-cover.png',
+    accent: '#7656bd',
+  },
 ]
 
 export const services = [

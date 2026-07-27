@@ -21,6 +21,10 @@ const projects = [
     title: 'Image Mosaic',
     href: 'https://ijaa.github.io/image-mosaic/',
   },
+  {
+    title: 'MDEye',
+    href: 'https://ijaa.github.io/mdeye-site/',
+  },
 ];
 
 test.describe('project image links', () => {

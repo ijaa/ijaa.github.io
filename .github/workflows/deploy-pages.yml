@@ -59,6 +59,13 @@ jobs:
           path: repos/image-mosaic
           token: ${{ secrets.PAGES_REPO_TOKEN }}
 
+      - name: Checkout mdeye-site
+        uses: actions/checkout@v5
+        with:
+          repository: ijaa/mdeye-site
+          path: repos/mdeye-site
+          token: ${{ secrets.PAGES_REPO_TOKEN }}
+
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
@@ -70,6 +77,7 @@ jobs:
             repos/gpt-image-gen/package-lock.json
             repos/poem-gallery/package-lock.json
             repos/image-mosaic/package-lock.json
+            repos/mdeye-site/package-lock.json
 
       - name: Install publish repo deps
         run: npm ci
@@ -82,6 +90,7 @@ jobs:
           GPT_IMAGE_GEN_DIR: repos/gpt-image-gen
           POEM_GALLERY_DIR: repos/poem-gallery
           IMAGE_MOSAIC_DIR: repos/image-mosaic
+          MDEYE_SITE_DIR: repos/mdeye-site
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

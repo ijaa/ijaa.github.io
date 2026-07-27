@@ -41,6 +41,13 @@ const productRepos = [
       : resolve(root, '..', 'image-mosaic'),
     basePath: '/image-mosaic/',
   },
+  {
+    name: 'mdeye-site',
+    repoDir: process.env.MDEYE_SITE_DIR
+      ? resolve(root, process.env.MDEYE_SITE_DIR)
+      : resolve(root, '..', 'mdeye-site'),
+    basePath: '/mdeye-site/',
+  },
 ]
 
 const run = (command, cwd, extraEnv = {}) => {
