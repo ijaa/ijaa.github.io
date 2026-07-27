@@ -45,6 +45,15 @@ export const projects: Project[] = [
     image: '/assets/poem-gallery/poem-gallery-cover.png',
     accent: '#7f9f8d',
   },
+  {
+    id: 'image-mosaic',
+    index: '05',
+    title: 'Image Mosaic',
+    description: '把图片封装为可分享、可还原的马赛克 PNG，支持本地粘贴与密码保护。',
+    href: 'https://ijaa.github.io/image-mosaic/',
+    image: '/assets/image-mosaic/image-mosaic-cover.png',
+    accent: '#74a85d',
+  },
 ]
 
 export const services = [

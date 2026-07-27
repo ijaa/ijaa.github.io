@@ -34,6 +34,13 @@ const productRepos = [
       : resolve(root, '..', 'poem-gallery'),
     basePath: '/poem-gallery/',
   },
+  {
+    name: 'image-mosaic',
+    repoDir: process.env.IMAGE_MOSAIC_DIR
+      ? resolve(root, process.env.IMAGE_MOSAIC_DIR)
+      : resolve(root, '..', 'image-mosaic'),
+    basePath: '/image-mosaic/',
+  },
 ]
 
 const run = (command, cwd, extraEnv = {}) => {

@@ -52,6 +52,13 @@ jobs:
           path: repos/poem-gallery
           token: ${{ secrets.PAGES_REPO_TOKEN }}
 
+      - name: Checkout image-mosaic
+        uses: actions/checkout@v5
+        with:
+          repository: ijaa/image-mosaic
+          path: repos/image-mosaic
+          token: ${{ secrets.PAGES_REPO_TOKEN }}
+
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
@@ -62,6 +69,7 @@ jobs:
             repos/image-story/package-lock.json
             repos/gpt-image-gen/package-lock.json
             repos/poem-gallery/package-lock.json
+            repos/image-mosaic/package-lock.json
 
       - name: Install publish repo deps
         run: npm ci
@@ -73,6 +81,7 @@ jobs:
           IMAGE_STORY_DIR: repos/image-story
           GPT_IMAGE_GEN_DIR: repos/gpt-image-gen
           POEM_GALLERY_DIR: repos/poem-gallery
+          IMAGE_MOSAIC_DIR: repos/image-mosaic
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

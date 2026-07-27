@@ -17,6 +17,10 @@ const projects = [
     title: 'Poem Gallery',
     href: 'https://ijaa.github.io/poem-gallery/',
   },
+  {
+    title: 'Image Mosaic',
+    href: 'https://ijaa.github.io/image-mosaic/',
+  },
 ];
 
 test.describe('project image links', () => {
