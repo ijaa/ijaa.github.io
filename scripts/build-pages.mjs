@@ -48,6 +48,13 @@ const productRepos = [
       : resolve(root, '..', 'mdeye-site'),
     basePath: '/mdeye-site/',
   },
+  {
+    name: 'agnes-playground',
+    repoDir: process.env.AGNES_PLAYGROUND_DIR
+      ? resolve(root, process.env.AGNES_PLAYGROUND_DIR)
+      : resolve(root, '..', 'agnes-playground'),
+    basePath: '/agnes-playground/',
+  },
 ]
 
 const run = (command, cwd, extraEnv = {}) => {

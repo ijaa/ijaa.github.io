@@ -63,6 +63,15 @@ export const projects: Project[] = [
     image: '/assets/mdeye-site/mdeye-cover.png',
     accent: '#7656bd',
   },
+  {
+    id: 'agnes-playground',
+    index: '07',
+    title: 'Agnes Playground',
+    description: '免费畅用 Agnes 大模型：文本对话、图像生成与视频生成，API Key 仅保存在本地。',
+    href: 'https://ijaa.github.io/agnes-playground/',
+    image: '/assets/agnes-playground/agnes-playground-cover.png',
+    accent: '#6366f1',
+  },
 ]
 
 export const services = [

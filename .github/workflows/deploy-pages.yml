@@ -66,6 +66,13 @@ jobs:
           path: repos/mdeye-site
           token: ${{ secrets.PAGES_REPO_TOKEN }}
 
+      - name: Checkout agnes-playground
+        uses: actions/checkout@v5
+        with:
+          repository: ijaa/agnes-playground
+          path: repos/agnes-playground
+          token: ${{ secrets.PAGES_REPO_TOKEN }}
+
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
@@ -78,6 +85,7 @@ jobs:
             repos/poem-gallery/package-lock.json
             repos/image-mosaic/package-lock.json
             repos/mdeye-site/package-lock.json
+            repos/agnes-playground/package-lock.json
 
       - name: Install publish repo deps
         run: npm ci
@@ -91,6 +99,7 @@ jobs:
           POEM_GALLERY_DIR: repos/poem-gallery
           IMAGE_MOSAIC_DIR: repos/image-mosaic
           MDEYE_SITE_DIR: repos/mdeye-site
+          AGNES_PLAYGROUND_DIR: repos/agnes-playground
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
