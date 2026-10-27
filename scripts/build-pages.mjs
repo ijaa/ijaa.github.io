@@ -55,6 +55,13 @@ const productRepos = [
       : resolve(root, '..', 'agnes-playground'),
     basePath: '/agnes-playground/',
   },
+  {
+    name: 'bqb-txt-modifier',
+    repoDir: process.env.BQB_TXT_MODIFIER_DIR
+      ? resolve(root, process.env.BQB_TXT_MODIFIER_DIR)
+      : resolve(root, '..', 'bqb-txt-modifier'),
+    basePath: '/bqb-txt-modifier/',
+  },
 ]
 
 const run = (command, cwd, extraEnv = {}) => {

@@ -73,6 +73,13 @@ jobs:
           path: repos/agnes-playground
           token: ${{ secrets.PAGES_REPO_TOKEN }}
 
+      - name: Checkout bqb-txt-modifier
+        uses: actions/checkout@v5
+        with:
+          repository: ijaa/bqb-txt-modifier
+          path: repos/bqb-txt-modifier
+          token: ${{ secrets.PAGES_REPO_TOKEN }}
+
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
@@ -86,6 +93,7 @@ jobs:
             repos/image-mosaic/package-lock.json
             repos/mdeye-site/package-lock.json
             repos/agnes-playground/package-lock.json
+            repos/bqb-txt-modifier/package-lock.json
 
       - name: Install publish repo deps
         run: npm ci
@@ -100,6 +108,7 @@ jobs:
           IMAGE_MOSAIC_DIR: repos/image-mosaic
           MDEYE_SITE_DIR: repos/mdeye-site
           AGNES_PLAYGROUND_DIR: repos/agnes-playground
+          BQB_TXT_MODIFIER_DIR: repos/bqb-txt-modifier
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

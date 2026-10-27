@@ -72,6 +72,15 @@ export const projects: Project[] = [
     image: '/assets/agnes-playground/agnes-playground-cover.png',
     accent: '#6366f1',
   },
+  {
+    id: 'bqb-txt-modifier',
+    index: '08',
+    title: 'BQB TXT Modifier',
+    description: '在表情包上改字：本地 OCR 逐字定位，只重绘变化的字，其余像素保持原样。',
+    href: 'https://ijaa.github.io/bqb-txt-modifier/',
+    image: '/assets/bqb-txt-modifier/bqb-txt-modifier-cover.png',
+    accent: '#e07a5f',
+  },
 ]
 
 export const services = [

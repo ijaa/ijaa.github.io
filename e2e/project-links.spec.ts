@@ -29,6 +29,10 @@ const projects = [
     title: 'Agnes Playground',
     href: 'https://ijaa.github.io/agnes-playground/',
   },
+  {
+    title: 'BQB TXT Modifier',
+    href: 'https://ijaa.github.io/bqb-txt-modifier/',
+  },
 ];
 
 test.describe('project image links', () => {
