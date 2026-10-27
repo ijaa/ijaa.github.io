@@ -19,10 +19,10 @@ https://ijaa.github.io/<project-name>/
 
 ## 仓库约定
 
-本地目录推荐放在 `kkstudios` 下，与 `ijaa.github.io` 同级：
+本地目录推荐放在 `ijaa-github-sites` 下，与 `ijaa.github.io` 同级：
 
 ```text
-~/Documents/workspace/other/kkstudios/
+~/Documents/workspace/other/kkstudios/ijaa-github-sites/
   ijaa.github.io/
   gpt-image-gen/
   poem-gallery/
@@ -167,7 +167,7 @@ jobs:
 ## 第三步：本地验证子项目
 
 ```bash
-cd ~/Documents/workspace/other/kkstudios/<new-project>
+cd ~/Documents/workspace/other/kkstudios/ijaa-github-sites/<new-project>
 npm install
 npm run lint
 npm test
@@ -415,7 +415,7 @@ lsof -ti tcp:4173
 ## 第十步：主页本地聚合验证
 
 ```bash
-cd ~/Documents/workspace/other/kkstudios/ijaa.github.io
+cd ~/Documents/workspace/other/kkstudios/ijaa-github-sites/ijaa.github.io
 npm run build
 ```
 
@@ -464,7 +464,7 @@ curl -L -I https://ijaa.github.io/assets/<new-project>/<cover>.png
 对子项目做一次真实改动或空提交：
 
 ```bash
-cd ~/Documents/workspace/other/kkstudios/<new-project>
+cd ~/Documents/workspace/other/kkstudios/ijaa-github-sites/<new-project>
 git commit --allow-empty -m "Test pages deploy trigger"
 git push origin main
 ```
